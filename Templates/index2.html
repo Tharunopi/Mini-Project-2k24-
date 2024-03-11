@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Audio</title>
+  <style>
+    body {
+      display:default;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 4;
+      font-family: Arial, sans-serif;
+      background-color: white; /* Light gray background */
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+            margin: 20px 0;
+            color: blaCK;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px; /* Spacing between form elements */
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      color: red;
+      border: groove;
+      border: 1px solid #ccc; /* Light gray border */
+      border-radius: 5px;
+    }
+            input[type="file"]:hover {
+            background-color: #333;
+        }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: black; /* Darker blue button */
+      color: white;
+      border: groove;
+      border-radius: 10px;
+      cursor: pointer; /* Indicate clickable button */
+    }
+     input[type="submit"]:hover {
+            background-color: green;
+        }
+
+    .transcription {
+      background-color:black; /* Light gray background for transcription */
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px; /* Spacing above transcription */
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+    <div style="color:black;">
+    <h1>Upload Audio File</h1>
+    <form action="/process_audio" method="post" enctype="multipart/form-data">
+      <input type="file" name="audio_file" accept="audio/*" required>
+      <input type="submit" value="Upload">
+    </form>
+    {% if transcription %}
+    <h2 class="transcription-heading">Transcription:</h2>
+    <p class="transcription">{{ transcription }}</p>
+    {% endif %}
+
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
