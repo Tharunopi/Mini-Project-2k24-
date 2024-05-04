@@ -10,13 +10,13 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 4;
-            margin: 0; /* Updated to remove top margin */
+            margin: 0;
             padding: 0;
-            background-image: url('wepik-export-20240331060639izfP.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            display: flex; /* Added flexbox for vertical centering */
+            justify-content: center; /* Align elements horizontally in center */
+            align-items: center; /* Align elements vertically in center */
+            min-height: 100vh; /* Set minimum viewport height for full-screen centering */
+            overflow: hidden; /* Prevent scrollbars if video doesn't fill viewport */
         }
 
         /* Updated to hide the h1 element */
@@ -26,7 +26,6 @@
 
         form {
             text-align: center;
-            margin: 20px auto;
         }
 
         button {
@@ -38,16 +37,26 @@
             border-radius: 6px;
             cursor: pointer;
             transition: background-color 0.1s ease;
+            margin: 10px; /* Added margin for spacing between buttons */
         }
 
         button:hover {
             background-color: blue;
         }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Removed the h1 element -->
+
     <form action="/process_symptoms" method="post">
         <button type="submit" name="answer" value="yes">Text Advisor</button>
         <button type="submit" name="answer" value="no">Audio Recognizer</button>
