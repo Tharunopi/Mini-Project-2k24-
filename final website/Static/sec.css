@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Morganite';
+    src: url("E:\Jujutsu-kaisen-sukuna-Animated-Landing-Page-main\Jujutsu-kaisen-sukuna-Animated-Landing-Page-main\font-family\morganite") format('truetype');
+  }
+  
+  body {
+    font-family: 'Morganite', sans-serif;
+  }
+  
+  h1, h2 {
+    font-family: 'Morganite', sans-serif;
+  }
+  
+  .container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
+  #result {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Set the background color */
+}
+  

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Symptom Analyzer</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            overflow: hidden;
+        }
+
+        video {
+            object-fit: cover;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* added background color for better readability */
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* added background color for better readability */
+        }
+    </style>
+</head>
+<body>
+    <video id="video-background" autoplay loop muted>
+        <source src="/Static/final_doc.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <h1>Text Symptom Analyzer</h1>
+    <form id="symptomForm">
+        <label for="symptoms">Enter your symptoms:</label>
+        <input type="text" id="symptoms" name="symptoms">
+        <button type="submit">Analyze Text</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('symptomForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const symptoms = document.getElementById('symptoms').value;
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'symptoms': symptoms })
+            });
+            const data = await response.json();
+            let resultHtml = `<p>Detected Disease: ${data.disease}</p><p>Accuracy: ${data.accuracy}</p>`;
+            if (data.medicine) {
+                resultHtml += `<p>Medicine: ${data.medicine}</p>`;
+            }
+            if (data.discription) {
+                resultHtml += `<p>Description: ${data.discription}</p>`;
+            }
+            if (data.diet) {
+                resultHtml += `<p>Diet: ${data.diet}</p>`;
+            }
+            if (data.precaution) {
+                resultHtml += `<p>Precautions:</p><ul>`;
+                data.precaution.forEach(p => {
+                    resultHtml += `<li>${p}</li>`;
+                });
+                resultHtml += `</ul>`;
+            }
+            document.getElementById('result').innerHTML = resultHtml;
+        });
+    </script>
+</body>
+</html>

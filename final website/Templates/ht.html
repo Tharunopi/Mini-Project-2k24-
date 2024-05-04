@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Transcription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1,
+        h2 {
+            margin: 0;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Audio Transcription and Analysis</h1>
+    </header>
+
+    <section>
+        <h2>Transcription:</h2>
+        <p>{{ transcription }}</p>
+    </section>
+
+    <section>
+        <h2>Analysis Result:</h2>
+        <ul>
+            {% for symptom in result %}
+            <li>{{ symptom }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Confidence Score:</h2>
+        <ul>
+            {% for score in accuracy %}
+            <li>{{ score }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Reason:</h2>
+        <p>{{ reason }}</p>
+    </section>
+
+    <section>
+        <h2>Medicine</h2>
+        <p>{{ medicine }}</p>
+    </section>
+
+    <section>
+        <h2>Diet:</h2>
+        <p>{{ diet }}</p>
+    </section>
+
+    <section>
+        <h2>Workout:</h2>
+        <ul>
+            {% for item in workout %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Add any additional sections or elements as needed -->
+
+    <footer>
+        <p>© 2024 Your Company Name</p>
+    </footer>
+</body>
+
+</html>
